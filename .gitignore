@@ -3,6 +3,9 @@
 *.dll
 *.so
 *.dylib
+codename-creator
+codename-creator~
+codename-creator.exe
 
 # Test binary, build with `go test -c`
 *.test
