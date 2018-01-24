@@ -7,16 +7,15 @@ phases:
       - echo GOPATH - $GOPATH
 
       - echo Create dir in GOPATH for sources
-      - mkdir -p ${GOPATH}/src/${PACKAGE}
+      - mkdir -p ${GOPATH}/src
 
       - echo Copy source files into GOPATH
-      - echo cp -a ${CODEBUILD_SRC_DIR}/.  ${GOPATH}/src/${PACKAGE}
-      - cp -a ${CODEBUILD_SRC_DIR}/.  ${GOPATH}/src/${PACKAGE}
+      - cp -a ${CODEBUILD_SRC_DIR}/.  ${GOPATH}/src
 
-      - cd ${GOPATH}/src/${PACKAGE} && go get ./...
+      - cd ${GOPATH}/src && go get ./...
   build:
     commands:
-      - cd ${GOPATH}/src/${PACKAGE} && go build -o ${CODEBUILD_SRC_DIR}/codename-creator 
+      - cd ${GOPATH}/src && go build -o ${CODEBUILD_SRC_DIR}/codename-creator 
   post_build:
     commands:
       - echo Build completed
