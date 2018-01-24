@@ -3,19 +3,10 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo CODEBUILD_SRC_DIR - $CODEBUILD_SRC_DIR
-      - echo GOPATH - $GOPATH
-
-      - echo Create dir in GOPATH for sources
-      - mkdir -p ${GOPATH}/src
-
-      - echo Copy source files into GOPATH
-      - cp -a ${CODEBUILD_SRC_DIR}/.  ${GOPATH}/src
-
-      - cd ${GOPATH}/src && go get ./...
+      - go get github.com/aws/aws-lambda-go/lambda
   build:
     commands:
-      - cd ${GOPATH}/src && go build -o ${CODEBUILD_SRC_DIR}/codename-creator 
+      - go build
   post_build:
     commands:
       - echo Build completed
