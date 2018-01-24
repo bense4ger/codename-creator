@@ -1,0 +1,15 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  CodenameCreatorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: codename-generator
+      Runtime: Go1.x
+      CodeUri: ./
+      Events:
+        CodenameCreatorApi:
+          Type: Api
+          Properties:
+            Path: /
+            Method: GET
