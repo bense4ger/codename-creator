@@ -6,7 +6,7 @@ phases:
       - go get github.com/aws/aws-lambda-go/lambda
   build:
     commands:
-      - go build
+      - go build -o codename-creator
   post_build:
     commands:
       - echo Build completed
