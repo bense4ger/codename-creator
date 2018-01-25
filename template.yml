@@ -7,15 +7,18 @@ Resources:
       Handler: codename-creator
       Runtime: go1.x
       CodeUri: ./
+      Policies: AmazonDynamoDBReadOnlyAccess
       Events:
         CodenameCreatorApi:
           Type: Api
           Properties:
             Path: /
             Method: GET
+
     CodenameTable:
       Type: AWS::DynamoDB::Table
       Properties:
+        TableName: CodenameData
         AttributeDefinitions:
           - AttributeName: type
             AttributeType: S
