@@ -6,7 +6,7 @@ Resources:
     Properties:
       Handler: codename-generator
       Runtime: go1.x
-      CodeUri: s3://codepipeline-us-east-1-904718901445/Codename-Creator/MyAppBuild/
+      CodeUri: ./codename-creator
       Events:
         CodenameCreatorApi:
           Type: Api
