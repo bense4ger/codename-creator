@@ -5,7 +5,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: codename-generator
-      Runtime: Go1.x
+      Runtime: go1.x
       CodeUri: s3://codepipeline-us-east-1-904718901445/Codename-Creator/MyAppBuild/
       Events:
         CodenameCreatorApi:
