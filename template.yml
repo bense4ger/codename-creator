@@ -13,3 +13,21 @@ Resources:
           Properties:
             Path: /
             Method: GET
+    CodenameTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: type
+            AttributeType: S
+          - AttributeName: ident
+            AttributeType: N
+          - AttributeName: value
+            AttributeType: S
+        KeySchema:
+          - AttributeName: type
+            KeyType: HASH
+          - AttributeName: ident
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
