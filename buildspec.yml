@@ -7,10 +7,10 @@ phases:
   build:
     commands:
       - go build -o codename-creator
+      - zip codename-creator.zip codename-creator
   post_build:
     commands:
-      - aws cloudformation package --template-file template.yml --output-template-file serverless.yml --s3-bucket codepipeline-us-east-1-904718901445
+      - aws cloudformation package --template-file template.yml --output-template-file serverless.yml --s3-bucket $BUILD_OUTPUT_BUCKET
 artifacts:
-  type: zip
   files:
     - serverless.yml
