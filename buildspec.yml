@@ -9,7 +9,7 @@ phases:
       - go build -o codename-creator
   post_build:
     commands:
-      - aws cloudformation package --template-file template.yml --output-template-file serverless.yml --s3-bucket bense4ger-deploy
+      - aws cloudformation package --template-file template.yml --output-template-file serverless.yml --s3-bucket codepipeline-us-east-1-904718901445
 artifacts:
   type: zip
   files:
