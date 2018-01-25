@@ -6,7 +6,7 @@ Resources:
     Properties:
       Handler: codename-generator
       Runtime: go1.x
-      CodeUri: ./codename-creator
+      CodeUri: ./
       Events:
         CodenameCreatorApi:
           Type: Api
