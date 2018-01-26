@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bense4ger/codename-creator/foo"
 	"context"
 
 	"github.com/aws/aws-lambda-go/events"
@@ -9,7 +10,7 @@ import (
 
 func handleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	return events.APIGatewayProxyResponse{
-		Body:       "Hello, world!",
+		Body:       foo.GetMessage(),
 		StatusCode: 200,
 	}, nil
 }
