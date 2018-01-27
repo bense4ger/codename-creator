@@ -5,6 +5,7 @@ env:
 phases:
   install:
     commands:
+      - echo ${GOPATH}
       - mkdir -p ${GOPATH}/src/${PACAKGE}
       - cp -a ${CODEBUILD_SRC_DIR}/.  ${GOPATH}/src/${PACKAGE}
       - cd ${GOPATH}/src/${PACKAGE} && go get ./...
