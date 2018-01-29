@@ -5,11 +5,9 @@ env:
 phases:
   install:
     commands:
-      - echo ${GOROOT}
-      - unset GOROOT
       - mkdir -p ${GOPATH}/src/${PACKAGE}
       - cp -a ${CODEBUILD_SRC_DIR}/. ${GOPATH}/src/${PACKAGE}
-      - cd ${GOPATH}/src/${PACKAGE} && go get ./...
+      - cd ${GOPATH}/src/${PACKAGE} && go get github.com/aws/aws-lambda-go
   build:
     commands:
       - cd ${GOPATH}/src/${PACKAGE} && go build -o ${CODEBUILD_SRC_DIR}/codename-creator
