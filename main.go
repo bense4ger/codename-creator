@@ -1,8 +1,9 @@
 package main
 
 import (
-	"bense4ger/codename-creator/foo"
 	"context"
+
+	"github.com/bense4ger/codename-creator/foo"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
