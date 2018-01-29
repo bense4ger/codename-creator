@@ -7,6 +7,7 @@ phases:
     commands:
       - mkdir -p ${GOPATH}/src/${PACKAGE}
       - cp -a ${CODEBUILD_SRC_DIR}/. ${GOPATH}/src/${PACKAGE}
+      - cd ${GOPATH}/src/${PACKAGE} && go get ./...
   build:
     commands:
       - cd ${GOPATH}/src/${PACKAGE} && go build -o ${CODEBUILD_SRC_DIR}/codename-creator
