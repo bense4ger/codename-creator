@@ -5,9 +5,9 @@ env:
 phases:
   install:
     commands:
-      - export GOPATH="${CODEBUILD_SRC_DIR}/${WORKDIR}"; mkdir -p "${GOPATH}/bin"; mkdir -p "${GOPATH}/src${PACKAGE}"
+      - export GOPATH="${CODEBUILD_SRC_DIR}/${WORKDIR}"; echo ${GOPATH}; mkdir -p "${GOPATH}/bin"; mkdir -p "${GOPATH}${PACKAGE}"
       - export GOPATH="${CODEBUILD_SRC_DIR}/${WORKDIR}"; export PATH="${PATH}:/usr/local/go/bin:${GOPATH}/bin"
-      - export GOPATH="${CODEBUILD_SRC_DIR}/${WORKDIR}"; cp -a ${CODEBUILD_SRC_DIR}/. ${GOPATH}/src/${PACKAGE}
+      - export GOPATH="${CODEBUILD_SRC_DIR}/${WORKDIR}"; cp -a ${CODEBUILD_SRC_DIR}/. ${GOPATH}${PACKAGE}
       - export GOPATH="${CODEBUILD_SRC_DIR}/${WORKDIR}"; cd ${GOPATH}; ls -a
       - export GOPATH="${CODEBUILD_SRC_DIR}/${WORKDIR}"; cd ${GOPATH}${PACKAGE}; go get ./...
   build:
