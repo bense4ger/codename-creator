@@ -8,7 +8,7 @@ phases:
       - mkdir -p ${GOPATH}/src/${PACKAGE}
       - cd ${CODEBUILD_SRC_DIR}; ls -a; rm -rf github.com
       - cp -a ${CODEBUILD_SRC_DIR}/.  ${GOPATH}/src/${PACKAGE}
-      - cd ${GOPATH}/src/${PACKAGE}; go get ./...
+      - cd ${GOPATH}/src/${PACKAGE}; go get github.com/aws/aws-lambda-go/lambda; go get github.com/aws/aws-lambda-go/lambdacontext; go get github.com/aws/aws-lambda-go/lambda/events; 
   build:
     commands:
       - cd ${GOPATH}/src/${PACKAGE}; go build -o ${CODEBUILD_SRC_DIR}/codename-creator
