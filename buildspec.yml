@@ -13,7 +13,7 @@ phases:
       - echo Copy source files into GOPATH
       - cp -a ${CODEBUILD_SRC_DIR}/.  ${GOPATH}/src/${PACKAGE}
 
-      - cd ${GOPATH}/src/${PACKAGE} && go get ./...
+      - cd ${GOPATH}/src/${PACKAGE} && ls -a && go get ./...
   build:
     commands:
       - cd ${GOPATH}/src/${PACKAGE} && go build -o ${CODEBUILD_SRC_DIR}/${APP_NAME}
