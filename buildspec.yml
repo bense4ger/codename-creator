@@ -1,17 +1,22 @@
 version: 0.2
 env:
   variables:
-    PACKAGE: "github.com/bense4ger/codename-creator"
+    APP_NAME: "codename-creator"
+    PACKAGE: "github.com/bense4ger/codename-creator" 
 phases:
-  install:
+  install: 
     commands:
+      - echo ${GOPATH}
+      - echo Create dir in GOPATH for sources
       - mkdir -p ${GOPATH}/src/${PACKAGE}
-      - cd ${CODEBUILD_SRC_DIR}; ls -a; rm -rf github.com
+
+      - echo Copy source files into GOPATH
       - cp -a ${CODEBUILD_SRC_DIR}/.  ${GOPATH}/src/${PACKAGE}
-      - cd ${GOPATH}/src/${PACKAGE}; go get github.com/aws/aws-lambda-go/lambda; go get github.com/aws/aws-lambda-go/lambdacontext; go get github.com/aws/aws-lambda-go/lambda/events; 
+
+      - cd ${GOPATH}/src/${PACKAGE} && go get ./...
   build:
     commands:
-      - cd ${GOPATH}/src/${PACKAGE}; go build -o ${CODEBUILD_SRC_DIR}/codename-creator
+      - cd ${GOPATH}/src/${PACKAGE} && go build -o ${CODEBUILD_SRC_DIR}/${APP_NAME}
   post_build:
     commands:
       - aws cloudformation package --template-file template.yml --output-template-file serverless.yml --s3-bucket codepipeline-us-east-1-904718901445
