@@ -7,6 +7,7 @@ phases:
   install: 
     commands:
       - echo ${GOPATH}
+      - echo ${CODEBUILD_SRC_DIR}
       - echo Create dir in GOPATH for sources
       - mkdir -p ${GOPATH}/src/${PACKAGE}
 
