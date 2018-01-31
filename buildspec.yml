@@ -7,7 +7,7 @@ phases:
     commands:
       - export GOPATH="${CODEBUILD_SRC_DIR}"; mkdir -p "${GOPATH}/bin"; mkdir -p "${GOPATH}/${WORKDIR}${PACKAGE}"
       - export GOPATH="${CODEBUILD_SRC_DIR}"; export PATH="${PATH}:/usr/local/go/bin:${GOPATH}/bin"
-      - cd ${GOPATH}; ls -a      
+      - cd ${GOPATH}; ls -a    
       - export GOPATH="${CODEBUILD_SRC_DIR}"; cd ${GOPATH}; ls -a
       - export GOPATH="${CODEBUILD_SRC_DIR}"; cd ${GOPATH}${PACKAGE}; go get ./...
   build:
