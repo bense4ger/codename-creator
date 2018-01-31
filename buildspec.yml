@@ -5,13 +5,12 @@ env:
 phases:
   install:
     commands:
-      - mkdir -p ${GOPATH}/src/${PACKAGE}
-      - cp -a ${CODEBUILD_SRC_DIR}/. ${GOPATH}/src/${PACKAGE}
-      - cd ${GOPATH}/src/${PACKAGE}/responder && ls -a
-      - cd ${GOPATH}/src/${PACKAGE} && go get ./...
+      - export GOPATH="${CODEBUILD_SRC_DIR}/${WORKDIR}"; mkdir -p "${GOPATH}/bin"; mkdir -p "${GOPATH}/src"
+      - export GOPATH="${CODEBUILD_SRC_DIR}/${WORKDIR}"; export PATH="${PATH}:/usr/local/go/bin:${GOPATH}/bin"
+      - export GOPATH="${CODEBUILD_SRC_DIR}/${WORKDIR}"; cd ${GOPATH}/src/${PACKAGE}; go get ./...
   build:
     commands:
-      - cd ${GOPATH}/src/${PACKAGE} && go build -o ${CODEBUILD_SRC_DIR}/codename-creator
+      - cd ${GOPATH}/src/${PACKAGE}; go build -o ${CODEBUILD_SRC_DIR}/codename-creator
   post_build:
     commands:
       - aws cloudformation package --template-file template.yml --output-template-file serverless.yml --s3-bucket codepipeline-us-east-1-904718901445
