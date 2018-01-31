@@ -5,11 +5,10 @@ env:
 phases:
   install:
     commands:
-      - export GOPATH="${CODEBUILD_SRC_DIR}"; mkdir -p "${GOPATH}/bin"; mkdir -p "${GOPATH}/${WORKDIR}${PACKAGE}"
-      - export GOPATH="${CODEBUILD_SRC_DIR}"; export PATH="${PATH}:/usr/local/go/bin:${GOPATH}/bin"
-      - cd ${GOPATH}; ls -a    
-      - export GOPATH="${CODEBUILD_SRC_DIR}"; cd ${GOPATH}; ls -a
-      - export GOPATH="${CODEBUILD_SRC_DIR}"; cd ${GOPATH}${PACKAGE}; go get ./...
+      - mkdir -p ${GOPATH}/src/${PACKAGE}
+      - cd ${CODEBUILD_SRC_DIR}; ls -a; rm -rf github.com
+      - cp -a ${CODEBUILD_SRC_DIR}/.  ${GOPATH}/src/${PACKAGE}
+      - cd ${GOPATH}/src/${PACKAGE}; go get ./...
   build:
     commands:
       - cd ${GOPATH}/src/${PACKAGE}; go build -o ${CODEBUILD_SRC_DIR}/codename-creator
