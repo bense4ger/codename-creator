@@ -1,0 +1,21 @@
+language: go
+go:
+- '1.8'
+- '1.9'
+- '1.10.x'
+before_install:
+- curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+- chmod +x $GOPATH/bin/dep
+install:
+- dep ensure
+script: go test -race ./...
+deploy:
+  provider: lambda
+  runtime: go1.x
+  function_name: CodenameCreator
+  role: arn:aws:iam::503962799038:role/service-role/lambda_basic_execution
+  access_key_id: AKIAI5ZYDRB6YSG23SHQ
+  secret_access_key:
+    secure: IeoUhgYdwSRYjBsbh07h/zYiKoQWTdsxE1bW5hWJtwZm/732eZ464grerwkV0PJI8FpUbo8M0ww1hIJDPvxqLV4ygK5nFKo7LUB7Ru+yj8lUz1VfrTzbNsVM+1saKqBjo4FnUV0ehzxuxRrO6yJSjkpYKmNYFiebh7Vfubv2OJ/YR8wTOFtLuaN/iN1Wd9VnmJfXOauv03m9S7uKOSF7fFwDlv3L/6HqO0pEB6nwcc9Aw2U9XYXFYTtn55L4tnTCCgEfwX7bnkSn9N4docpA1su4xdsg+0HM723zn5Vj0lgq8UtFrWXYeMDNRQpbKxeGCLPqRPg0DZ1AoHq1A88k9O4rNzpbVKyR3rfx/Ftysj+oiAKxtlK+1knPd/xMDtrELYNP78UwTaI7OZXWt5o+V2ADd/2pNnOCOVrEoCAPNTiAp5wvdYzx+owp3LLYD613/MHYN+yMZwCUme3zbZop56re34kqjm8zsmEt4AIdD7PZyr37qEXEQ158eAkE5BgsDWYpA+13nzmVpsw4vHizYhy1LnrJDFNZR/NQmnE8yDvi7Opqg+gwX4UzyVRFSWW9UXNcw+jE4v5TquEHIPldLwEKJpSK6ahqugKQWd04TDJkv7ux+wwheik2xYvvWC84C873St8/mB+l/+KJCTILQO7FiNY1Tuq5cQLkj8tmN/w=
+  on:
+    branch: release
