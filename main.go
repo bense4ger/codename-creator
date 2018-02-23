@@ -3,6 +3,8 @@ package main
 import (
 	"context"
 
+	"github.com/bense4ger/codename-creator/foo"
+
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/bense4ger/codename-creator/responder"
